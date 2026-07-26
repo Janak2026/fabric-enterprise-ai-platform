@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Notebook",
-    "displayName": "08_Model_Serving"
+    "displayName": "06_Machine_Learning"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "0b6a2ec4-f1a3-8763-4eba-eb8df2df3081"
+    "logicalId": "39bca6a9-7c31-b259-478c-97b81b1cd63f"
   }
 }
