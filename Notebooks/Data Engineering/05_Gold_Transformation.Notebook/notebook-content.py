@@ -1186,6 +1186,7 @@ print("Completed through Product Dimension lookup.")
 
 # CELL ********************
 
+# Cell 12:
 # -----------------------------------------------------------------------------
 # Step 6 : Lookup Seller Dimension
 # -----------------------------------------------------------------------------
@@ -1406,6 +1407,97 @@ validate_dimension(
 
 # CELL ********************
 
+# Cell 13:
+# =============================================================================
+# STEP 12: Write Gold Business Models
+# =============================================================================
+
+print("=" * 80)
+print("Writing Gold Business Models to Lakehouse...")
+print("=" * 80)
+
+# Calendar Dimension
+Business_Models_dim_calendar.write \
+    .mode("overwrite") \
+    .format("delta") \
+    .saveAsTable("Business_Models_dim_calendar")
+
+print("✓ Business_Models_dim_calendar written.")
+
+# Customer Dimension
+Business_Models_dim_customer.write \
+    .mode("overwrite") \
+    .format("delta") \
+    .saveAsTable("Business_Models_dim_customer")
+
+print("✓ Business_Models_dim_customer written.")
+
+# Product Dimension
+Business_Models_dim_product.write \
+    .mode("overwrite") \
+    .format("delta") \
+    .saveAsTable("Business_Models_dim_product")
+
+print("✓ Business_Models_dim_product written.")
+
+# Seller Dimension
+Business_Models_dim_seller.write \
+    .mode("overwrite") \
+    .format("delta") \
+    .saveAsTable("Business_Models_dim_seller")
+
+print("✓ Business_Models_dim_seller written.")
+
+# Geography Dimension
+Business_Models_dim_geography.write \
+    .mode("overwrite") \
+    .format("delta") \
+    .saveAsTable("Business_Models_dim_geography")
+
+print("✓ Business_Models_dim_geography written.")
+
+# Sales Fact
+Business_Models_fact_sales.write \
+    .mode("overwrite") \
+    .format("delta") \
+    .saveAsTable("Business_Models_fact_sales")
+
+print("✓ Business_Models_fact_sales written.")
+
+print("=" * 80)
+print("All Gold Business Models successfully written to the Lakehouse.")
+print("=" * 80)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# Cell 14:
+# =============================================================================
+# STEP 13: Validate Persisted Gold Tables
+# =============================================================================
+
+gold_tables = [
+    "Business_Models_dim_calendar",
+    "Business_Models_dim_customer",
+    "Business_Models_dim_product",
+    "Business_Models_dim_seller",
+    "Business_Models_dim_geography",
+    "Business_Models_fact_sales"
+]
+
+for table in gold_tables:
+    df = spark.table(table)
+
+    print("=" * 80)
+    print(table)
+    print(f"Rows    : {df.count()}")
+    print(f"Columns : {len(df.columns)}")
 
 # METADATA ********************
 
