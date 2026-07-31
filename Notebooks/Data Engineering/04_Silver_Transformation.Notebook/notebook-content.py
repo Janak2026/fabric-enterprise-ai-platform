@@ -8,12 +8,12 @@
 # META   },
 # META   "dependencies": {
 # META     "lakehouse": {
-# META       "default_lakehouse": "7f869026-0276-4bf0-9150-97ec98ea5455",
-# META       "default_lakehouse_name": "EnterpriseLakeFabric",
+# META       "default_lakehouse": "170d9a5a-7e61-4d0f-8908-f16ec4daf847",
+# META       "default_lakehouse_name": "AI_ML_LakeHouse",
 # META       "default_lakehouse_workspace_id": "d7ae502d-247b-4ea5-857f-127fff869a69",
 # META       "known_lakehouses": [
 # META         {
-# META           "id": "7f869026-0276-4bf0-9150-97ec98ea5455"
+# META           "id": "170d9a5a-7e61-4d0f-8908-f16ec4daf847"
 # META         }
 # META       ]
 # META     }
@@ -49,6 +49,9 @@
 # Import Required Libraries
 # ==========================================================
 
+# Spark Session
+from pyspark.sql import SparkSession
+
 # PySpark SQL Functions
 from pyspark.sql import functions as F
 
@@ -80,21 +83,32 @@ from datetime import datetime
 # CELL ********************
 
 # Cell 2:
-# ============================================================
-# Project Information
-# ============================================================
+# ==========================================================
+# Project Configuration
+# ==========================================================
+
+from datetime import datetime
+
+spark = SparkSession.builder.getOrCreate()
 
 PROJECT_NAME = "Fabric Enterprise AI Platform"
 NOTEBOOK_NAME = "04_Silver_Transformation"
+
 SOURCE_LAYER = "Bronze"
 TARGET_LAYER = "Silver"
 
-print("=" * 60)
-print(f"Project      : {PROJECT_NAME}")
-print(f"Notebook     : {NOTEBOOK_NAME}")
-print(f"Source Layer : {SOURCE_LAYER}")
-print(f"Target Layer : {TARGET_LAYER}")
-print("=" * 60)
+print("=" * 70)
+print(PROJECT_NAME)
+print("=" * 70)
+
+print(f"Notebook         : {NOTEBOOK_NAME}")
+print(f"Execution Time   : {datetime.now():%Y-%m-%d %H:%M:%S}")
+print(f"Source Layer     : {SOURCE_LAYER}")
+print(f"Target Layer     : {TARGET_LAYER}")
+
+print("=" * 70)
+print("Configuration Loaded Successfully")
+print("=" * 70)
 
 # METADATA ********************
 
@@ -2376,7 +2390,7 @@ print("=" * 90)
 
 # Cell 23:
 # ==========================================================
-# Write Silver Tables to Lakehouse
+# Save Silver Tables to Lakehouse
 # ==========================================================
 
 print("=" * 90)

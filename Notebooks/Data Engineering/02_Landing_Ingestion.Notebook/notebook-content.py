@@ -8,12 +8,12 @@
 # META   },
 # META   "dependencies": {
 # META     "lakehouse": {
-# META       "default_lakehouse": "7f869026-0276-4bf0-9150-97ec98ea5455",
-# META       "default_lakehouse_name": "EnterpriseLakeFabric",
+# META       "default_lakehouse": "170d9a5a-7e61-4d0f-8908-f16ec4daf847",
+# META       "default_lakehouse_name": "AI_ML_LakeHouse",
 # META       "default_lakehouse_workspace_id": "d7ae502d-247b-4ea5-857f-127fff869a69",
 # META       "known_lakehouses": [
 # META         {
-# META           "id": "7f869026-0276-4bf0-9150-97ec98ea5455"
+# META           "id": "170d9a5a-7e61-4d0f-8908-f16ec4daf847"
 # META         }
 # META       ]
 # META     }
@@ -84,17 +84,23 @@ spark = SparkSession.builder.getOrCreate()
 
 PROJECT_NAME = "Fabric Enterprise AI Platform"
 NOTEBOOK_NAME = "02_Landing_Ingestion"
-SOURCE_LAYER = "Landing"
-TARGET_LAYER = "Bronze"
-LANDING_PATH = "Files/Landing/Files"
+
+# OneLake Paths
+RAW_PATH = "Files/raw_files"
+LANDING_PATH = "Files/Landing"
 
 print("=" * 70)
 print(PROJECT_NAME)
 print("=" * 70)
 
-print(f"Notebook        : 02_Landing_Ingestion")
-print(f"Execution Time  : {datetime.now()}")
-print(f"Landing Path    : {LANDING_PATH}")
+print(f"Notebook         : {NOTEBOOK_NAME}")
+print(f"Execution Time   : {datetime.now():%Y-%m-%d %H:%M:%S}")
+print(f"Raw Files Path   : {RAW_PATH}")
+print(f"Landing Path     : {LANDING_PATH}")
+
+print("=" * 70)
+print("Configuration Loaded Successfully")
+print("=" * 70)
 
 # METADATA ********************
 
@@ -127,21 +133,26 @@ print("=" * 70)
 print("Landing Folder Validation")
 print("=" * 70)
 
+validated = 0
+
 for folder in landing_folders:
 
     try:
 
         mssparkutils.fs.mkdirs(folder)
 
-        print(f"✓ Created : {folder}")
+        validated += 1
+
+        print(f"✓ Ready : {folder}")
 
     except Exception as ex:
 
-        print(f"✗ Failed  : {folder}")
+        print(f"✗ Failed: {folder}")
         print(ex)
 
 print("=" * 70)
-print("Landing Structure Ready")
+print(f"Landing Folders Verified : {validated}/{len(landing_folders)}")
+print("Landing Layer Status     : READY")
 print("=" * 70)
 
 # METADATA ********************
@@ -174,30 +185,34 @@ print("=" * 70)
 # Landing Dataset Configuration
 # ==========================================================
 
-LANDING_PATH = "Files/Landing/Files"
-
 datasets = {
 
-    "Customers"   : f"{LANDING_PATH}/customers_dataset.csv",
-    "Orders"      : f"{LANDING_PATH}/orders_dataset.csv",
-    "OrderItems"  : f"{LANDING_PATH}/order_items_dataset.csv",
-    "Payments"    : f"{LANDING_PATH}/order_payments_dataset.csv",
-    "Products"    : f"{LANDING_PATH}/products_dataset.csv",
-    "Sellers"     : f"{LANDING_PATH}/sellers_dataset.csv",
-    "Reviews"     : f"{LANDING_PATH}/order_reviews_dataset.csv",
-    "Geolocation" : f"{LANDING_PATH}/geolocation_dataset.csv"
+    "Customers"   : f"{RAW_PATH}/customers_dataset.csv",
+    "Orders"      : f"{RAW_PATH}/orders_dataset.csv",
+    "OrderItems"  : f"{RAW_PATH}/order_items_dataset.csv",
+    "Payments"    : f"{RAW_PATH}/order_payments_dataset.csv",
+    "Products"    : f"{RAW_PATH}/products_dataset.csv",
+    "Sellers"     : f"{RAW_PATH}/sellers_dataset.csv",
+    "Reviews"     : f"{RAW_PATH}/order_reviews_dataset.csv",
+    "Geolocation" : f"{RAW_PATH}/geolocation_dataset.csv"
+
 }
 
 print("=" * 70)
 print("Landing Dataset Configuration")
 print("=" * 70)
 
-for dataset, path in datasets.items():
+print(f"Source Folder : {RAW_PATH}")
+print("-" * 70)
 
-    print(f"{dataset:<15} : {path}")
+for dataset_name, dataset_path in datasets.items():
 
+    print(f"{dataset_name:<15} : {dataset_path}")
+
+print("-" * 70)
+print(f"Datasets Configured : {len(datasets)}")
+print("Configuration Status : READY")
 print("=" * 70)
-print(f"Total Datasets : {len(datasets)}")
 
 # METADATA ********************
 
@@ -210,14 +225,14 @@ print(f"Total Datasets : {len(datasets)}")
 
 # Cell 5:
 # ==========================================================
-# Landing Dataset Validation
+# Landing Dataset Validation & Ingestion
 # ==========================================================
 
 landing_dataframes = {}
 summary = []
 
 print("=" * 70)
-print("Landing Dataset Validation")
+print("Landing Dataset Validation & Ingestion")
 print("=" * 70)
 
 for dataset_name, dataset_path in datasets.items():
@@ -225,33 +240,67 @@ for dataset_name, dataset_path in datasets.items():
     print(f"\nProcessing : {dataset_name}")
     print("-" * 70)
 
-    df = (
-        spark.read
-             .option("header", True)
-             .csv(dataset_path)
-    )
+    try:
 
-    # Store DataFrame
-    landing_dataframes[dataset_name] = df
-
-    # Calculate once
-    row_count = df.count()
-    column_count = len(df.columns)
-
-    # Store metadata for Cell 6
-    summary.append(
-        (
-            dataset_name,
-            row_count,
-            column_count,
-            "PASS"
+        # -----------------------------------------------
+        # Read Source Dataset
+        # -----------------------------------------------
+        df = (
+            spark.read
+                 .option("header", True)
+                 .csv(dataset_path)
         )
-    )
 
-    print(f"Rows       : {row_count:,}")
-    print(f"Columns    : {column_count}")
+        # -----------------------------------------------
+        # Save to Landing Layer
+        # -----------------------------------------------
+        landing_output_path = f"{LANDING_PATH}/{dataset_name}"
 
-    display(df.limit(5))
+        (
+            df.write
+              .mode("overwrite")
+              .parquet(landing_output_path)
+        )
+
+        # -----------------------------------------------
+        # Store DataFrame
+        # -----------------------------------------------
+        landing_dataframes[dataset_name] = df
+
+        row_count = df.count()
+        column_count = len(df.columns)
+
+        summary.append(
+            (
+                dataset_name,
+                row_count,
+                column_count,
+                "PASS"
+            )
+        )
+
+        print(f"Source Path      : {dataset_path}")
+        print(f"Landing Path     : {landing_output_path}")
+        print(f"Rows             : {row_count:,}")
+        print(f"Columns          : {column_count}")
+        print("Status           : PASS")
+
+        display(df.limit(5))
+
+    except Exception as ex:
+
+        summary.append(
+            (
+                dataset_name,
+                0,
+                0,
+                "FAIL"
+            )
+        )
+
+        print(f"Source Path      : {dataset_path}")
+        print("Status           : FAIL")
+        print(ex)
 
 # METADATA ********************
 
@@ -272,11 +321,11 @@ for dataset_name, dataset_path in datasets.items():
 
 # Cell 6:
 # ==========================================================
-# Landing Validation Summary
+# Landing Ingestion Summary
 # ==========================================================
 
 print("=" * 90)
-print("LANDING INGESTION VALIDATION SUMMARY")
+print("LANDING INGESTION SUMMARY")
 print("=" * 90)
 
 summary_df = spark.createDataFrame(
@@ -291,15 +340,36 @@ summary_df = spark.createDataFrame(
 
 display(summary_df)
 
+# ----------------------------------------------------------
+# Overall Statistics
+# ----------------------------------------------------------
+
+total_datasets = len(summary)
 total_rows = sum(item[1] for item in summary)
 
-print("=" * 90)
-print("LANDING INGESTION COMPLETED SUCCESSFULLY")
+passed = sum(1 for item in summary if item[3] == "PASS")
+failed = sum(1 for item in summary if item[3] == "FAIL")
+
 print("=" * 90)
 
-print(f"Datasets Validated : {len(summary)}")
-print(f"Total Rows         : {total_rows:,}")
-print("Landing Status     : READY")
+if failed == 0:
+    print("LANDING INGESTION COMPLETED SUCCESSFULLY")
+else:
+    print("LANDING INGESTION COMPLETED WITH ERRORS")
+
+print("=" * 90)
+
+print(f"Datasets Processed : {total_datasets}")
+print(f"Successful         : {passed}")
+print(f"Failed             : {failed}")
+print(f"Total Rows Loaded  : {total_rows:,}")
+print(f"Landing Location   : {LANDING_PATH}")
+
+if failed == 0:
+    print("Landing Status     : READY")
+else:
+    print("Landing Status     : REVIEW REQUIRED")
+
 print("Next Notebook      : 03_Bronze_Processing")
 
 print("=" * 90)

@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Lakehouse",
-    "displayName": "EnterpriseLakeFabric"
+    "displayName": "AI_ML_LakeHouse"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "4b9ba069-30b4-8067-4abc-aa22205b75e6"
+    "logicalId": "c4daf847-f16e-8908-4d0f-7e61170d9a5a"
   }
 }

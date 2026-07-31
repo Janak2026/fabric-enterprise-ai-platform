@@ -8,12 +8,12 @@
 # META   },
 # META   "dependencies": {
 # META     "lakehouse": {
-# META       "default_lakehouse": "7f869026-0276-4bf0-9150-97ec98ea5455",
-# META       "default_lakehouse_name": "EnterpriseLakeFabric",
+# META       "default_lakehouse": "170d9a5a-7e61-4d0f-8908-f16ec4daf847",
+# META       "default_lakehouse_name": "AI_ML_LakeHouse",
 # META       "default_lakehouse_workspace_id": "d7ae502d-247b-4ea5-857f-127fff869a69",
 # META       "known_lakehouses": [
 # META         {
-# META           "id": "7f869026-0276-4bf0-9150-97ec98ea5455"
+# META           "id": "170d9a5a-7e61-4d0f-8908-f16ec4daf847"
 # META         }
 # META       ]
 # META     }
@@ -123,7 +123,7 @@
 AZURE_OPENAI_ENDPOINT = "https://aoai-titan.openai.azure.com/"
 
 # Azure OpenAI API Key
-AZURE_OPENAI_API_KEY = 
+AZURE_OPENAI_API_KEY = "KEY"
 
 # Azure OpenAI API Version (Chat Completions)
 AZURE_OPENAI_API_VERSION = "2024-02-01"

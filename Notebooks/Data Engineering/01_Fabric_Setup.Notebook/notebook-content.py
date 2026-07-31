@@ -8,12 +8,12 @@
 # META   },
 # META   "dependencies": {
 # META     "lakehouse": {
-# META       "default_lakehouse": "7f869026-0276-4bf0-9150-97ec98ea5455",
-# META       "default_lakehouse_name": "EnterpriseLakeFabric",
+# META       "default_lakehouse": "170d9a5a-7e61-4d0f-8908-f16ec4daf847",
+# META       "default_lakehouse_name": "AI_ML_LakeHouse",
 # META       "default_lakehouse_workspace_id": "d7ae502d-247b-4ea5-857f-127fff869a69",
 # META       "known_lakehouses": [
 # META         {
-# META           "id": "7f869026-0276-4bf0-9150-97ec98ea5455"
+# META           "id": "170d9a5a-7e61-4d0f-8908-f16ec4daf847"
 # META         }
 # META       ]
 # META     }
@@ -66,7 +66,7 @@
 
 # CELL ********************
 
-## Cell 1:
+# Cell 1:
 # ==========================================================
 # Import Required Libraries
 # ==========================================================
@@ -86,7 +86,7 @@ import platform
 
 # CELL ********************
 
-## Cell 2:
+# Cell 2:
 # ==========================================================
 # Project Information
 # ==========================================================
@@ -108,9 +108,9 @@ print(f"Python Version: {platform.python_version()}")
 
 # CELL ********************
 
-## Cell 3:
+# Cell 3:
 # ==========================================================
-# Spark Validation
+# Spark Session Validation
 # ==========================================================
 
 spark = SparkSession.builder.getOrCreate()
@@ -119,7 +119,8 @@ print("=" * 60)
 print("Spark Environment")
 print("=" * 60)
 
-print(f"Spark Version : {spark.version}")
+print(f"Spark Version        : {spark.version}")
+print(f"Current Database     : {spark.catalog.currentDatabase()}")
 
 print("\nSpark Session Status : PASS")
 
@@ -137,7 +138,7 @@ print("\nSpark Session Status : PASS")
 
 # CELL ********************
 
-## Cell 4:
+# Cell 4:
 # ==========================================================
 # Lakehouse Validation
 # ==========================================================
@@ -147,12 +148,20 @@ print("Lakehouse Validation")
 print("=" * 60)
 
 try:
+
     current_database = spark.catalog.currentDatabase()
 
+    print(f"Lakehouse Name   : AI_ML_LakeHouse")
     print(f"Current Database : {current_database}")
+
+    databases = [db.name for db in spark.catalog.listDatabases()]
+
+    print(f"Available Databases : {len(databases)}")
+
     print("Lakehouse Status : PASS")
 
 except Exception as ex:
+
     print("Lakehouse Status : FAIL")
     print(ex)
 
@@ -170,27 +179,30 @@ except Exception as ex:
 
 # CELL ********************
 
+# Cell 5:
 # ==========================================================
-# OneLake Folder Validation
+# Raw Files Validation
 # ==========================================================
 
-required_folders = [
-    "Files/Landing"
-]
+raw_files_path = "Files/raw_files"
 
 print("=" * 60)
-print("Folder Validation")
+print("Raw Files Validation")
 print("=" * 60)
 
-for folder in required_folders:
+try:
 
-    try:
-        mssparkutils.fs.mkdirs(folder)
-        print(f"PASS : {folder}")
+    files = mssparkutils.fs.ls(raw_files_path)
 
-    except Exception as ex:
-        print(f"FAIL : {folder}")
-        print(ex)
+    print(f"Raw Files Path : {raw_files_path}")
+    print(f"Files Found    : {len(files)}")
+
+    print("Raw Files Status : PASS")
+
+except Exception as ex:
+
+    print("Raw Files Status : FAIL")
+    print(ex)
 
 # METADATA ********************
 
@@ -201,46 +213,67 @@ for folder in required_folders:
 
 # CELL ********************
 
-## Cell 6:
+# Cell 6:
 # ==========================================================
 # Environment Validation Summary
 # ==========================================================
 
 print("=" * 70)
-print("        FABRIC ENTERPRISE AI PLATFORM")
-print("      ENVIRONMENT VALIDATION SUMMARY")
+print("          FABRIC ENTERPRISE AI PLATFORM")
+print("        ENVIRONMENT VALIDATION SUMMARY")
 print("=" * 70)
 
-print("✓ Spark Session              : PASS")
-print("✓ Lakehouse Connection       : PASS")
-print("✓ Spark Runtime              : PASS")
-print("✓ OneLake Folder Structure   : PASS")
-print("✓ Environment Ready          : PASS")
+print("✓ Spark Session            : PASS")
+print("✓ Lakehouse Connection     : PASS")
+print("✓ Spark Runtime            : PASS")
+print("✓ Raw Files Validation     : PASS")
+print("✓ Environment Ready        : PASS")
 
 print("-" * 70)
 
-print("Current Architecture")
+print("Current Platform Architecture")
 
 print("""
-Landing
-   │
-Bronze
-   │
-Silver
- ┌───────┴────────┐
- ▼                ▼
-Machine Learning   AI Engineering
- └───────┬────────┘
-         ▼
-       Gold
-         │
-         ▼
-SQL Endpoint → Semantic Model → Power BI
+
+                Raw Files
+                    │
+                    ▼
+          Landing Ingestion
+                    │
+                    ▼
+              Bronze Tables
+                    │
+                    ▼
+              Silver Tables
+                    │
+                    ▼
+         Business Models Gold
+                    │
+        ┌───────────┴───────────┐
+        ▼                       ▼
+ Machine Learning         AI Engineering
+        │                       │
+        └───────────┬───────────┘
+                    ▼
+          AI_ML_Enriched_Gold
+                    │
+                    ▼
+              AI Agent Layer
+                    │
+                    ▼
+         SQL Analytics Endpoint
+                    │
+                    ▼
+             Semantic Model
+                    │
+                    ▼
+                Power BI
+
 """)
 
 print("-" * 70)
 
-print("Status        : READY")
+print("Status        : ENVIRONMENT READY")
 print("Next Notebook : 02_Landing_Ingestion")
 
 print("=" * 70)
