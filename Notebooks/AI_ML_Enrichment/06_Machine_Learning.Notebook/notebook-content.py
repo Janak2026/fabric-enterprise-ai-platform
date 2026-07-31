@@ -8,12 +8,12 @@
 # META   },
 # META   "dependencies": {
 # META     "lakehouse": {
-# META       "default_lakehouse": "7f869026-0276-4bf0-9150-97ec98ea5455",
-# META       "default_lakehouse_name": "EnterpriseLakeFabric",
+# META       "default_lakehouse": "170d9a5a-7e61-4d0f-8908-f16ec4daf847",
+# META       "default_lakehouse_name": "AI_ML_LakeHouse",
 # META       "default_lakehouse_workspace_id": "d7ae502d-247b-4ea5-857f-127fff869a69",
 # META       "known_lakehouses": [
 # META         {
-# META           "id": "7f869026-0276-4bf0-9150-97ec98ea5455"
+# META           "id": "170d9a5a-7e61-4d0f-8908-f16ec4daf847"
 # META         }
 # META       ]
 # META     }
@@ -28,7 +28,7 @@
 # 
 # This notebook represents the Machine Learning layer of the Enterprise AI Platform.
 # 
-# The primary objective of this notebook is to transform business-ready Gold data into machine learning features, train predictive models, generate business predictions, and persist reusable machine learning assets.
+# The primary objective of this notebook is to transform business-ready Gold data into machine learning features, train predictive models, generate business predictions, and Save reusable machine learning assets.
 # 
 # Unlike the Business Models layer, which focuses on analytical reporting, this layer focuses on predictive intelligence by preparing feature datasets, training machine learning models, and producing prediction tables that can be consumed by downstream AI applications, SQL Analytics Endpoint, Semantic Models, and Power BI.
 # 
@@ -44,7 +44,7 @@
 # - Train and evaluate predictive machine learning models.
 # - Register trained models using MLflow.
 # - Generate batch predictions.
-# - Persist machine learning feature and prediction Delta tables.
+# - Save machine learning feature and prediction Delta tables.
 # 
 # ---
 # 
@@ -182,7 +182,7 @@ def validate_dimension(df, table_name):
 # - Engineer reusable machine learning features
 # - Train predictive machine learning models
 # - Generate batch predictions
-# - Persist Machine Learning Delta tables for downstream AI applications
+# - Save Machine Learning Delta tables for downstream AI applications
 # 
 # ---
 # 
@@ -472,7 +472,7 @@ validate_dimension(
 
 # Cell 6:
 # ============================================================
-# Persist Customer Feature Table
+# Save Customer Feature Table
 # ============================================================
 
 (
@@ -503,7 +503,7 @@ Machine_Learning_feature_customer = spark.table(
 )
 
 # ============================================================
-# Validate Persisted Customer Feature Table
+# Validate Customer Feature Table
 # ============================================================
 
 validate_dimension(
@@ -695,7 +695,7 @@ validate_dimension(
 
 # Cell 9:
 # ============================================================
-# Persist Product Feature Table
+# Save Product Feature Table
 # ============================================================
 
 (
@@ -726,7 +726,7 @@ Machine_Learning_feature_product = spark.table(
 )
 
 # ============================================================
-# Validate Persisted Product Feature Table
+# Validate Product Feature Table
 # ============================================================
 
 validate_dimension(
@@ -908,7 +908,7 @@ validate_dimension(
 
 # Cell 12:
 # ============================================================
-# Persist Sales Feature Table
+# Save Sales Feature Table
 # ============================================================
 
 (
@@ -1010,7 +1010,7 @@ sales_df = spark.table(
 )
 
 # ============================================================
-# Validate Persisted Sales Feature Table
+# Validate Sales Feature Table
 # ============================================================
 
 validate_dimension(
