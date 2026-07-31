@@ -11,205 +11,407 @@
 
 # MARKDOWN ********************
 
-# # 🚀 Project TITAN
-# 
-# ## Enterprise AI Data Platform
-# 
-# ### Architecture & Technical Documentation
+# # 🏛️ Project TITAN – Enterprise AI Data Platform
+# ## Trusted Intelligent Transformation & Analytics Network (TITAN)
 # 
 # ---
 # 
-# **Version:** 2.0
+# # Overview
 # 
-# **Status:** 🚧 Active Development
+# Project TITAN is an end-to-end Enterprise AI Data Platform built on **Microsoft Fabric**, designed to demonstrate modern data engineering, machine learning, generative AI, and analytics within a single unified Lakehouse architecture.
 # 
-# **Platform:** Microsoft Fabric
+# The platform follows a production-inspired architecture that transforms raw business data into intelligent, AI-powered insights through multiple processing layers.
 # 
-# **Primary Architecture:** Lakehouse + Medallion + AI/ML
-# 
-# **Repository:** Project TITAN
+# Unlike traditional portfolio projects that focus on isolated technologies, TITAN integrates Data Engineering, Machine Learning, Generative AI, AI Agents, and Business Intelligence into one continuous pipeline.
 # 
 # ---
 # 
-# > **Project TITAN is an enterprise-scale AI data platform built on Microsoft Fabric.**
-# >
-# > The platform demonstrates how modern organisations design, build, and operate cloud-native data platforms by combining Data Engineering, Machine Learning, Artificial Intelligence, and Business Intelligence into a single, unified architecture.
+# # Project Vision
+# 
+# Design and implement a scalable enterprise analytics platform capable of:
+# 
+# - Building a modern Lakehouse using Microsoft Fabric
+# - Processing large-scale datasets using Apache Spark
+# - Implementing Medallion Architecture
+# - Creating dimensional business models
+# - Engineering machine learning features
+# - Training and tracking ML models with MLflow
+# - Generating AI-powered business insights
+# - Producing intelligent recommendations
+# - Supporting enterprise Retrieval-Augmented Generation (RAG)
+# - Delivering executive dashboards through Power BI
 # 
 # ---
 # 
-# # Document Purpose
+# # High-Level Architecture
 # 
-# This notebook serves as the central architecture and technical documentation for Project TITAN.
+# ```text
+#                     Fabric Pipeline
+#                            │
+#                            ▼
+#                       Landing Layer
+#                            │
+#                            ▼
+#                       Bronze Layer
+#                            │
+#                            ▼
+#                       Silver Layer
+#                            │
+#                            ▼
+#                  Business_Models_Gold
+#                            │
+#           ┌────────────────┴────────────────┐
+#           ▼                                 ▼
+#      Machine Learning                 AI Engineering
+#           │                                 │
+#           └────────────────┬────────────────┘
+#                            ▼
+#                   AI_ML_Enriched_Gold
+#                            │
+#                            ▼
+#                       AI Agent
+#                            │
+#                            ▼
+#                      Analytics Layer
+#                            │
+#                     SQL Analytics Endpoint
+#                            │
+#                            ▼
+#                     Semantic Model
+#                            │
+#                            ▼
+#                         Power BI
+# ```
 # 
-# Unlike implementation notebooks, this document focuses on the overall solution architecture, design decisions, development progress, and future roadmap.
+# ---
 # 
-# Every major implementation within the project is documented here before it is developed, making this notebook the single source of truth for the entire platform.
-
-
-# MARKDOWN ********************
-
-# # 🎯 Project Vision
+# # Notebook Structure
 # 
-# Project TITAN aims to demonstrate how a modern enterprise builds an AI-ready analytics platform using Microsoft Fabric.
+# | Notebook | Description | Status |
+# |-----------|-------------|--------|
+# | 00_Project_Architecture | Project overview and architecture | ✅ |
+# | 01_Raw_Ingestion | Landing → Bronze ingestion | ✅ |
+# | 02_Data_Profiling | Data quality profiling | ✅ |
+# | 03_Data_Cleansing | Data cleansing and standardization | ✅ |
+# | 04_Data_Transformation | Business transformations | ✅ |
+# | 05_Business_Models | Gold dimensional model | ✅ |
+# | 06_Machine_Learning | Feature engineering, MLflow & predictions | ✅ |
+# | 07_AI_Engineering | Embeddings, prompts, AI insights & recommendations | ✅ |
+# | 08_AI_Agent | Enterprise AI Agent | ⏳ Planned |
+# | 09_Analytics | SQL Endpoint, Semantic Model & Power BI | ⏳ Planned |
 # 
-# Rather than implementing individual technologies in isolation, the project integrates the complete analytics lifecycle into a single platform, including:
+# ---
 # 
-# - Enterprise Data Engineering
-# - Lakehouse Architecture
+# # Technology Stack
+# 
+# ## Microsoft Fabric
+# 
+# - OneLake
+# - Lakehouse
+# - Notebook
+# - Spark Runtime
+# - SQL Analytics Endpoint
+# - Semantic Model
+# - Power BI
+# - Pipelines
+# 
+# ## Data Engineering
+# 
+# - Apache Spark
+# - PySpark
+# - Delta Lake
 # - Medallion Architecture
-# - Business Intelligence
-# - Machine Learning
-# - Generative AI
+# - Delta Tables
+# 
+# ## Machine Learning
+# 
+# - Spark MLlib
+# - Random Forest Regression
+# - Feature Engineering
+# - Feature Store
+# - MLflow
+# - Model Evaluation
+# 
+# ## Artificial Intelligence
+# 
+# - Azure OpenAI
+# - Embeddings
+# - Prompt Engineering
+# - Recommendation Engine
+# - Business Insight Generation
+# 
+# ## Analytics
+# 
+# - SQL Endpoint
+# - Semantic Model
+# - Power BI Dashboards
+# 
+# ---
+# 
+# # Platform Implementation
+# 
+# ## Phase 1 — Lakehouse Foundation
+# 
+# The platform begins with a Medallion Architecture.
+# 
+# ```text
+# Landing
+#    │
+# Bronze
+#    │
+# Silver
+#    │
+# Business Models Gold
+# ```
+# 
+# This layer is responsible for data ingestion, cleansing, transformation and dimensional modelling.
+# 
+# ---
+# 
+# ## Business Models
+# 
+# The Gold layer exposes business-ready dimensional tables.
+# 
+# ### Dimension Tables
+# 
+# - Business_Models_dim_calendar
+# - Business_Models_dim_customer
+# - Business_Models_dim_product
+# - Business_Models_dim_seller
+# - Business_Models_dim_geography
+# 
+# ### Fact Table
+# 
+# - Business_Models_fact_sales
+# 
+# **Total Tables:** 6
+# 
+# ---
+# 
+# # Phase 2 — Machine Learning
+# 
+# The Machine Learning layer transforms business models into predictive assets.
+# 
+# Pipeline:
+# 
+# ```text
+# Business Models
+#         │
+#         ▼
+# Feature Engineering
+#         │
+#         ▼
+# Feature Store
+#         │
+#         ▼
+# Model Training
+#         │
+#         ▼
+# MLflow
+#         │
+#         ▼
+# Batch Prediction
+#         │
+#         ▼
+# Prediction Tables
+# ```
+# 
+# ---
+# 
+# ## Machine Learning Tables
+# 
+# - Machine_Learning_feature_customer
+# - Machine_Learning_feature_product
+# - Machine_Learning_feature_sales
+# - Machine_Learning_prediction_sales
+# 
+# **Total Tables:** 4
+# 
+# ---
+# 
+# ## Machine Learning Capabilities
+# 
+# - Feature Engineering
+# - Feature Store Design
+# - Train/Test Split
+# - Random Forest Regression
+# - Model Evaluation (RMSE, MAE, R²)
+# - MLflow Experiment Tracking
+# - Model Artifact Logging
+# - Batch Prediction
+# - Prediction Persistence
+# - Delta Lake Integration
+# 
+# ---
+# 
+# # Phase 3 — AI Engineering
+# 
+# The AI Engineering layer converts structured business data and ML outputs into enterprise AI assets.
+# 
+# Architecture:
+# 
+# ```text
+# Business Models
+#           │
+# Machine Learning
+#           │
+#           ▼
+# Customer Embeddings
+#           │
+# Product Embeddings
+#           │
+# Prompt Repository
+#           │
+# Sales Insights
+#           │
+# Business Recommendations
+# ```
+# 
+# ---
+# 
+# ## AI Engineering Tables
+# 
+# - AI_Engineering_customer_embeddings
+# - AI_Engineering_product_embeddings
+# - AI_Engineering_prompt_repository
+# - AI_Engineering_sales_insights
+# - AI_Engineering_recommendations
+# 
+# **Total Tables:** 5
+# 
+# ---
+# 
+# ## AI Engineering Capabilities
+# 
+# - Embedding Generation
+# - Prompt Engineering
+# - Azure OpenAI Integration
+# - Business Insight Generation
+# - Intelligent Recommendation Engine
+# - Enterprise AI Data Assets
+# 
+# ---
+# 
+# # Current Platform Statistics
+# 
+# | Layer | Tables |
+# |---------|-------:|
+# | Business Models | 6 |
+# | Machine Learning | 4 |
+# | AI Engineering | 5 |
+# | **Total Delta Tables** | **15** |
+# 
+# ---
+# 
+# # Current Project Status
+# 
+# | Phase | Description | Status |
+# |------|-------------|--------|
+# | Phase 1 | Lakehouse Foundation | ✅ Complete |
+# | Phase 2 | Feature Engineering | ✅ Complete |
+# | Phase 3 | Machine Learning | ✅ Complete |
+# | Phase 4 | AI Engineering | ✅ Complete |
+# | Phase 5 | Enterprise RAG | ⏳ Next |
+# | Phase 6 | AI/ML Enriched Gold | ⏳ Planned |
+# | Phase 7 | Analytics & Power BI | ⏳ Planned |
+# | Phase 8 | Enterprise Operations | ⏳ Planned |
+# 
+# ---
+# 
+# # Roadmap
+# 
+# ## Phase 5 — Enterprise RAG
+# 
+# Planned capabilities:
+# 
+# - Document Processing
+# - PDF Ingestion
+# - Document Chunking
+# - Metadata Extraction
+# - Vector Storage
+# - Similarity Search
+# - Hybrid Search
 # - Retrieval-Augmented Generation (RAG)
-# - AI Agents
+# - Enterprise Knowledge Assistant
 # 
-# The objective is to design a production-style platform where data is ingested once, transformed into trusted business assets, enriched with Machine Learning and Artificial Intelligence, and finally consumed through reports, APIs, and intelligent agents.
-
-# MARKDOWN ********************
-
-# # 🎯 Project Objectives
+# ---
 # 
-# The primary objectives of Project TITAN are:
+# ## Phase 6 — AI/ML Enriched Gold
 # 
-# - Build an enterprise-grade Microsoft Fabric platform
-# - Implement a complete Medallion Architecture
-# - Demonstrate production-ready Data Engineering practices
-# - Design an enterprise Star Schema
-# - Build scalable Gold business models
-# - Engineer Machine Learning features
-# - Develop predictive Machine Learning models
-# - Implement AI document processing pipelines
-# - Build Embedding and Vector Search capabilities
-# - Develop Retrieval-Augmented Generation (RAG)
-# - Integrate Azure OpenAI
-# - Build AI-powered business assistants
-# - Deliver business insights through Power BI
-# - Follow enterprise software engineering best practices
-
-# MARKDOWN ********************
-
-# # 🏗 Enterprise Architecture
+# Merge business facts with AI-generated intelligence.
 # 
-# ```text
-#                     Enterprise Data Sources
-#                                │
-#         ┌──────────────────────┴──────────────────────┐
-#         │                                             │
-#    Batch Data                                  Streaming Data
-#         │                                             │
-#         └──────────────────────┬──────────────────────┘
-#                                │
-#                       Microsoft Fabric
-#                                │
-#         ┌──────────────────────┴──────────────────────┐
-#         │                                             │
-#       Data Factory                           Eventstream
-#         │                                             │
-#         └──────────────────────┬──────────────────────┘
-#                                │
-#                            Lakehouse
-#                                │
-#                      Landing → Bronze
-#                                │
-#                             Silver
-#                                │
-#           ┌────────────────────┴─────────────────────┐
-#           │                                          │
-#           ▼                                          ▼
-#  Machine Learning                           AI Engineering
-#           │                                          │
-#  Feature Engineering                  Document Processing
-#           │                                          │
-#  Feature Store                            Chunking
-#           │                                          │
-#  MLflow                                  Embeddings
-#           │                                          │
-#  ML Models                        Vector Search / RAG
-#           └────────────────────┬─────────────────────┘
-#                                ▼
-#                      AI/ML-Enriched Gold
-#                                │
-#                      SQL Analytics Endpoint
-#                                │
-#                        Semantic Model
-#                                │
-#                            Power BI
-#                                │
-#                   Dashboards • APIs • AI Agents
-# ```
-
-
-# MARKDOWN ********************
-
-# # 🛠 Technology Stack
+# Examples include:
 # 
-# | Category | Technologies |
-# |-----------|--------------|
-# | Platform | Microsoft Fabric, OneLake |
-# | Data Engineering | Spark, PySpark, Delta Lake, Lakehouse |
-# | Data Integration | Data Factory, Pipelines |
-# | Data Storage | OneLake, Delta Tables |
-# | Analytics | SQL, Power BI, Semantic Models |
-# | Machine Learning | MLflow, Feature Engineering |
-# | Artificial Intelligence | Azure OpenAI, Embeddings, Vector Search, RAG, AI Agents |
-# | Programming | Python, SQL |
-# | Version Control | Git, GitHub |
-
-# MARKDOWN ********************
-
-# # 📂 Notebook Organization
+# - Sales Predictions
+# - Customer Intelligence
+# - Product Similarity
+# - AI Summaries
+# - Executive Insights
+# - Recommendation Scores
 # 
-# ```text
-# Notebooks
-# │
-# ├── 📘 Documentation
-# │     00_Project_Architecture
-# │
-# ├── Data Engineering
-# │     01_Fabric_Setup
-# │     02_Landing_Ingestion
-# │     03_Bronze_Processing
-# │     04_Silver_Transformation
-# │     05_Gold_Transformation
-# │
-# ├── Machine Learning
-# │     06_Feature_Engineering
-# │     07_Model_Training
-# │     08_Model_Serving
-# │
-# ├── AI Engineering
-# │     09_Document_Processing
-# │     10_Embeddings
-# │     11_RAG
-# │     12_AI_Agent
-# │
-# └── Utilities
-#       Common_Functions
-#       Validation
-#       Helpers
-# ```
-
-# MARKDOWN ********************
-
-# # 📈 Current Implementation Status
+# This layer becomes the primary consumption layer for downstream analytics and AI agents.
 # 
-# | Phase | Status |
-# |---------|:------:|
-# | Workspace Configuration | ✅ |
-# | Git Integration | ✅ |
-# | Landing Layer | ✅ |
-# | Bronze Layer | ✅ |
-# | Silver Layer | ✅ |
-# | Gold Architecture Design | 🚧 In Progress |
-# | Gold Layer Implementation | ⬜ |
-# | Machine Learning | ⬜ |
-# | AI Engineering | ⬜ |
-# | AI/ML-Enriched Gold | ⬜ |
-# | SQL Analytics Endpoint | ⬜ |
-# | Semantic Model | ⬜ |
-# | Power BI | ⬜ |
-# | AI Agents | ⬜ |
+# ---
+# 
+# ## Phase 7 — Analytics
+# 
+# Expose enterprise intelligence through Microsoft Fabric analytics services.
+# 
+# Components:
+# 
+# - SQL Analytics Endpoint
+# - Semantic Model
+# - Power BI
+# 
+# Planned dashboards:
+# 
+# - Executive Dashboard
+# - Sales Prediction Dashboard
+# - Customer Intelligence Dashboard
+# - Product Intelligence Dashboard
+# - AI Recommendation Dashboard
+# - AI KPI Dashboard
+# 
+# ---
+# 
+# ## Phase 8 — Enterprise Operations
+# 
+# Production readiness includes:
+# 
+# ### Orchestration
+# 
+# - Fabric Pipelines
+# - Scheduling
+# - Dependencies
+# - Retry Policies
+# 
+# ### CI/CD
+# 
+# - Git Integration
+# - Deployment Pipelines
+# - Environment Promotion (Dev → Test → Prod)
+# 
+# ### Monitoring
+# 
+# - Logging
+# - Alerts
+# - Execution History
+# - Cost Monitoring
+# 
+# ### Security
+# 
+# - Workspace Roles
+# - Row-Level Security (RLS)
+# - Object-Level Security (OLS)
+# - Sensitivity Labels
+# - Managed Identity
+# - Azure Key Vault Integration
+# 
+# ---
+# 
+# # Conclusion
+# 
+# Project TITAN demonstrates a modern enterprise architecture that unifies Data Engineering, Machine Learning, Generative AI, and Business Intelligence within Microsoft Fabric.
+# 
+# The platform has successfully implemented its foundational intelligence layers and is evolving toward a production-grade Enterprise AI Data Platform with Retrieval-Augmented Generation (RAG), AI Agents, operational governance, and executive analytics.
 
-# MARKDOWN ********************
-
-# __________________________________________________________________________________________________________________________________________

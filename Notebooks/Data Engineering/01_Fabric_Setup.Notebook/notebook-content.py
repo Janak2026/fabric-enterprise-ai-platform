@@ -8,12 +8,12 @@
 # META   },
 # META   "dependencies": {
 # META     "lakehouse": {
-# META       "default_lakehouse": "205b75e6-aa22-4abc-8067-30b44b9ba069",
-# META       "default_lakehouse_name": "FabricEnterpriseLake",
-# META       "default_lakehouse_workspace_id": "91a249b4-c43c-4f8f-a4ce-afd3bf9990df",
+# META       "default_lakehouse": "7f869026-0276-4bf0-9150-97ec98ea5455",
+# META       "default_lakehouse_name": "EnterpriseLakeFabric",
+# META       "default_lakehouse_workspace_id": "d7ae502d-247b-4ea5-857f-127fff869a69",
 # META       "known_lakehouses": [
 # META         {
-# META           "id": "205b75e6-aa22-4abc-8067-30b44b9ba069"
+# META           "id": "7f869026-0276-4bf0-9150-97ec98ea5455"
 # META         }
 # META       ]
 # META     }
@@ -170,16 +170,12 @@ except Exception as ex:
 
 # CELL ********************
 
-## Cell 5:
 # ==========================================================
 # OneLake Folder Validation
 # ==========================================================
 
 required_folders = [
-    "Files/Landing",
-    "Files/Bronze",
-    "Files/Silver",
-    "Files/Gold"
+    "Files/Landing"
 ]
 
 print("=" * 60)
