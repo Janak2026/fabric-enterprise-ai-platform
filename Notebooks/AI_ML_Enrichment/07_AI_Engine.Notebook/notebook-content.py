@@ -119,23 +119,7 @@
 # Azure OpenAI Configuration
 # ============================================================
 
-# Azure OpenAI Resource Endpoint
-AZURE_OPENAI_ENDPOINT = "https://aoai-titan.openai.azure.com/"
-
-# Azure OpenAI API Key
-AZURE_OPENAI_API_KEY = "KEY"
-
-# Azure OpenAI API Version (Chat Completions)
-AZURE_OPENAI_API_VERSION = "2024-02-01"
-
-# Azure OpenAI API Version (Responses API)
-AZURE_OPENAI_API_VERSION_RESPONSES = "2025-03-01-preview"
-
-# Azure OpenAI Deployment Name
-EMBEDDING_DEPLOYMENT = "text-embedding-3-small"
-
-# Chat Deployment
-CHAT_DEPLOYMENT = "gpt-5-mini"
+# "PAT" from Azure portal: confidential
 
 # METADATA ********************
 
