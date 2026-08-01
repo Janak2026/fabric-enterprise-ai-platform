@@ -103,7 +103,7 @@
 # Install Required Libraries
 # ============================================================
 
-%pip install --upgrade openai
+# %pip install --upgrade openai
 
 # METADATA ********************
 
@@ -1524,12 +1524,12 @@ print("=" * 70)
 
 # NOTE:
 # During development we used:
-# sales_rows = sales_context_df.limit(10).collect()
-# print(f"Total Records to Process : {len(sales_rows)}")
+sales_rows = sales_context_df.limit(500).collect()
+print(f"Total Records to Process : {len(sales_rows)}")
 
 # Production
-sales_rows = sales_context_df.collect()
-print(f"Total Records to Process : {len(sales_rows)}")
+# sales_rows = sales_context_df.collect()
+# print(f"Total Records to Process : {len(sales_rows)}")
 
 # ============================================================
 # Initialize Results
