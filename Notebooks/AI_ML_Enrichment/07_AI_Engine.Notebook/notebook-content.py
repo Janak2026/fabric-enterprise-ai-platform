@@ -119,7 +119,7 @@
 # Azure OpenAI Configuration
 # ============================================================
 
-# "PAT" from Azure portal: confidential
+# "PAT" from Azure portal: confidential and not allowed to share
 
 # METADATA ********************
 
