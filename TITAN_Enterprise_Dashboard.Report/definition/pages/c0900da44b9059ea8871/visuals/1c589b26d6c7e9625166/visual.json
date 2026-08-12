@@ -1,0 +1,90 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "1c589b26d6c7e9625166",
+  "position": {
+    "x": 637.94212218649511,
+    "y": 331.31832797427649,
+    "z": 9000,
+    "height": 118.32797427652733,
+    "width": 633.82636655948545,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "analytics_risk_monitoring"
+                    }
+                  },
+                  "Property": "risk_level"
+                }
+              },
+              "queryRef": "analytics_risk_monitoring.risk_level",
+              "nativeQueryRef": "risk_level",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "analytics_risk_monitoring"
+                    }
+                  },
+                  "Property": "High Risk Decisions"
+                }
+              },
+              "queryRef": "analytics_risk_monitoring.High Risk Decisions",
+              "nativeQueryRef": "High Risk Decisions"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "analytics_risk_monitoring"
+                  }
+                },
+                "Property": "High Risk Decisions"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Risk Distribution'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

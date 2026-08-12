@@ -1,0 +1,72 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "1f2a9f9080d0b662c89d",
+  "position": {
+    "x": 783.02250803858522,
+    "y": 622.508038585209,
+    "z": 12000,
+    "height": 88.488745980707392,
+    "width": 488.74598070739546,
+    "tabOrder": 12000
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business_models_dim_calendar"
+                    }
+                  },
+                  "Property": "Calendar_Date"
+                }
+              },
+              "queryRef": "business_models_dim_calendar.Calendar_Date",
+              "nativeQueryRef": "Calendar_Date",
+              "active": true
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "business_models_dim_calendar"
+                  }
+                },
+                "Property": "Calendar_Date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Between'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

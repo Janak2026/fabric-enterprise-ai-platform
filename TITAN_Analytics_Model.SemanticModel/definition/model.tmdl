@@ -1,0 +1,24 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["DirectLake - AI_ML_LakeHouse"]
+
+annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit"]
+
+ref table business_models_dim_customer
+ref table business_models_dim_calendar
+ref table business_models_dim_product
+ref table analytics_ai_insights
+ref table analytics_executive_summary
+ref table business_models_dim_seller
+ref table analytics_risk_monitoring
+ref table business_models_dim_geography
+ref table business_models_fact_sales
+

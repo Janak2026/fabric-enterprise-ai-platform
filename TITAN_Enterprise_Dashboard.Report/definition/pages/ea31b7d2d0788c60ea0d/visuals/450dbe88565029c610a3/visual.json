@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "450dbe88565029c610a3",
+  "position": {
+    "x": 662.26541920247064,
+    "y": 220.04645549745013,
+    "z": 7000,
+    "height": 149.88671606348052,
+    "width": 601.67291696404243,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "lineClusteredColumnComboChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business_models_dim_calendar"
+                    }
+                  },
+                  "Property": "Calendar_Date"
+                }
+              },
+              "queryRef": "business_models_dim_calendar.Calendar_Date",
+              "nativeQueryRef": "Calendar_Date",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "analytics_executive_summary"
+                    }
+                  },
+                  "Property": "Actual Revenue"
+                }
+              },
+              "queryRef": "analytics_executive_summary.Actual Revenue",
+              "nativeQueryRef": "Actual Revenue"
+            }
+          ]
+        },
+        "Y2": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "analytics_executive_summary"
+                    }
+                  },
+                  "Property": "Predicted Revenue"
+                }
+              },
+              "queryRef": "analytics_executive_summary.Predicted Revenue",
+              "nativeQueryRef": "Predicted Revenue"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "business_models_dim_calendar"
+                  }
+                },
+                "Property": "Calendar_Date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

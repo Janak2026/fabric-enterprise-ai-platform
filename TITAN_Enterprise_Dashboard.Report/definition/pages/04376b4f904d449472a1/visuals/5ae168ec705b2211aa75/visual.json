@@ -1,0 +1,167 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "5ae168ec705b2211aa75",
+  "position": {
+    "x": 9.8480477014810539,
+    "y": 390.96749374879784,
+    "z": 8000,
+    "height": 307.25908828620891,
+    "width": 1056.6955183689172,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "analytics_risk_monitoring"
+                    }
+                  },
+                  "Property": "risk_level"
+                }
+              },
+              "queryRef": "analytics_risk_monitoring.risk_level",
+              "nativeQueryRef": "risk_level"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "analytics_risk_monitoring"
+                    }
+                  },
+                  "Property": "action_type"
+                }
+              },
+              "queryRef": "analytics_risk_monitoring.action_type",
+              "nativeQueryRef": "action_type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "analytics_risk_monitoring"
+                    }
+                  },
+                  "Property": "agent_decision"
+                }
+              },
+              "queryRef": "analytics_risk_monitoring.agent_decision",
+              "nativeQueryRef": "agent_decision"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "analytics_risk_monitoring"
+                    }
+                  },
+                  "Property": "action_status"
+                }
+              },
+              "queryRef": "analytics_risk_monitoring.action_status",
+              "nativeQueryRef": "action_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "analytics_risk_monitoring"
+                    }
+                  },
+                  "Property": "priority"
+                }
+              },
+              "queryRef": "analytics_risk_monitoring.priority",
+              "nativeQueryRef": "priority"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "analytics_risk_monitoring"
+                    }
+                  },
+                  "Property": "recommended_action"
+                }
+              },
+              "queryRef": "analytics_risk_monitoring.recommended_action",
+              "nativeQueryRef": "recommended_action"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "analytics_risk_monitoring"
+                    }
+                  },
+                  "Property": "requires_human_approval"
+                }
+              },
+              "queryRef": "analytics_risk_monitoring.requires_human_approval",
+              "nativeQueryRef": "requires_human_approval"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "169.9392187953184D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "analytics_risk_monitoring.action_type"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Risk & Recommended Actions'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

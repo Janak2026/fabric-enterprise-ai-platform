@@ -1,0 +1,188 @@
+table analytics_ai_insights
+	lineageTag: 78e78ce7-4301-4f66-bb3f-5c6a6f134777
+	sourceLineageTag: [dbo].[analytics_ai_insights]
+
+	measure 'AI Insights Generated' =
+			
+			COUNTROWS(
+			    analytics_ai_insights
+			)
+		formatString: 0
+		lineageTag: 847060c2-f8ce-4199-a07d-eed4cdfb5f72
+
+		changedProperty = Name
+
+	measure 'Average AI Review Score' =
+			
+			AVERAGE(
+			    analytics_ai_insights[review_score]
+			)
+		lineageTag: ac2798fd-69a6-4254-9815-53a7d127ad6a
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average AI Delivery Delay' =
+			
+			AVERAGE(
+			    analytics_ai_insights[delivery_delay_days]
+			)
+		lineageTag: 9c34940b-ae89-43bd-aed3-0f1b46caf531
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column sales_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: b9c226ce-61ad-4153-ad55-5f259e68cea4
+		sourceLineageTag: sales_sk
+		summarizeBy: sum
+		sourceColumn: sales_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_id
+		dataType: string
+		lineageTag: 2837c9d9-ed36-4c95-aed7-73fee0eb2eaf
+		sourceLineageTag: order_id
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: 36926253-a2fb-49a0-9c83-87bd6e5afade
+		sourceLineageTag: customer_sk
+		summarizeBy: none
+		sourceColumn: customer_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: 88b2dc2b-6a0d-49b6-9048-ab9fe59876ae
+		sourceLineageTag: product_sk
+		summarizeBy: none
+		sourceColumn: product_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: 568dcc5f-f7f2-4d19-8b37-a6fab8de738e
+		sourceLineageTag: seller_sk
+		summarizeBy: none
+		sourceColumn: seller_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column calendar_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: 58dec60b-fe94-4537-b032-9262d58874b7
+		sourceLineageTag: calendar_sk
+		summarizeBy: none
+		sourceColumn: calendar_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_status
+		dataType: string
+		lineageTag: fbdfb9f2-1342-462e-be25-d917a6d9e6a3
+		sourceLineageTag: order_status
+		summarizeBy: none
+		sourceColumn: order_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column delivery_status
+		dataType: string
+		lineageTag: 4f37c9c3-0a80-4545-b735-708c3594874e
+		sourceLineageTag: delivery_status
+		summarizeBy: none
+		sourceColumn: delivery_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column delivery_delay_days
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f9536dc-498e-4b9a-894a-6818e0d9885b
+		sourceLineageTag: delivery_delay_days
+		summarizeBy: sum
+		sourceColumn: delivery_delay_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_item_value
+		dataType: double
+		lineageTag: 302d643b-af02-4711-bfed-41cd7ce9d623
+		sourceLineageTag: total_item_value
+		summarizeBy: sum
+		sourceColumn: total_item_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column review_score
+		dataType: int64
+		formatString: 0
+		lineageTag: ad0a26b1-2166-4da3-9e99-a198b9a63fdf
+		sourceLineageTag: review_score
+		summarizeBy: sum
+		sourceColumn: review_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column sales_insight
+		dataType: string
+		lineageTag: 98fdbd2c-49d1-41b8-a421-2ad8e1b0ffc1
+		sourceLineageTag: sales_insight
+		summarizeBy: none
+		sourceColumn: sales_insight
+
+		annotation SummarizationSetBy = Automatic
+
+	column model_name
+		dataType: string
+		lineageTag: 5193abf6-c0a1-4602-b5e6-77bbe5dceba8
+		sourceLineageTag: model_name
+		summarizeBy: none
+		sourceColumn: model_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column prompt_name
+		dataType: string
+		lineageTag: c797a1b3-5656-4c9f-b830-6f9bd68a065b
+		sourceLineageTag: prompt_name
+		summarizeBy: none
+		sourceColumn: prompt_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column generated_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c6ab8457-d5ed-4a5f-a01e-33b41f693277
+		sourceLineageTag: generated_timestamp
+		summarizeBy: none
+		sourceColumn: generated_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	partition analytics_ai_insights = entity
+		mode: directLake
+		source
+			entityName: analytics_ai_insights
+			schemaName: dbo
+			expressionSource: 'DirectLake - AI_ML_LakeHouse'
+

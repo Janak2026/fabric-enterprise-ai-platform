@@ -1,0 +1,172 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "9a5974ed2db56c0577c6",
+  "position": {
+    "x": 20.197500746142765,
+    "y": 379.500408756472,
+    "z": 7001,
+    "height": 331.66422277876541,
+    "width": 989.67753656099558,
+    "tabOrder": 7001
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "analytics_ai_insights"
+                    }
+                  },
+                  "Property": "sales_insight"
+                }
+              },
+              "queryRef": "analytics_ai_insights.sales_insight",
+              "nativeQueryRef": "sales_insight"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "analytics_ai_insights"
+                    }
+                  },
+                  "Property": "model_name"
+                }
+              },
+              "queryRef": "analytics_ai_insights.model_name",
+              "nativeQueryRef": "model_name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "analytics_ai_insights"
+                    }
+                  },
+                  "Property": "generated_timestamp"
+                }
+              },
+              "queryRef": "analytics_ai_insights.generated_timestamp",
+              "nativeQueryRef": "generated_timestamp"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "analytics_ai_insights"
+                    }
+                  },
+                  "Property": "order_id"
+                }
+              },
+              "queryRef": "analytics_ai_insights.order_id",
+              "nativeQueryRef": "order_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "analytics_ai_insights"
+                    }
+                  },
+                  "Property": "order_status"
+                }
+              },
+              "queryRef": "analytics_ai_insights.order_status",
+              "nativeQueryRef": "order_status"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "analytics_ai_insights"
+                        }
+                      },
+                      "Property": "review_score"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(analytics_ai_insights.review_score)",
+              "nativeQueryRef": "Sum of review_score"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "analytics_ai_insights"
+                        }
+                      },
+                      "Property": "delivery_delay_days"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(analytics_ai_insights.delivery_delay_days)",
+              "nativeQueryRef": "Sum of delivery_delay_days"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "analytics_ai_insights"
+                  }
+                },
+                "Property": "sales_insight"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "538.4197271716196D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "analytics_ai_insights.sales_insight"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

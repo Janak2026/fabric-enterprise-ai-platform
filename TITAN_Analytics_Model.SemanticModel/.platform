@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "TITAN_Analytics_Model",
+    "description": "TITAN enterprise analytics semantic model serving curated Gold, Machine Learning, AI, risk, operational, and executive analytics data to Power BI. Provides the governed analytical layer for TITAN dashboards, executive reporting, AI insights, risk monitoring, and business decision support."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1904cdf2-cff0-961e-47b0-6a944e1e50f0"
+  }
+}

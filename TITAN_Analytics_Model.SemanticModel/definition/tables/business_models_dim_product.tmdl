@@ -1,0 +1,144 @@
+table business_models_dim_product
+	lineageTag: b655fda7-fc69-4ba1-9e13-a573f99d8d18
+	sourceLineageTag: [dbo].[business_models_dim_product]
+
+	column Product_SK
+		dataType: int64
+		formatString: 0
+		lineageTag: 8c8cdb81-4ce4-4f5b-bd7a-381c25a7d851
+		sourceLineageTag: Product_SK
+		summarizeBy: none
+		sourceColumn: Product_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_ID
+		dataType: string
+		lineageTag: 404b5244-4cf4-46d8-b9de-6b46ab9ecfbc
+		sourceLineageTag: Product_ID
+		summarizeBy: none
+		sourceColumn: Product_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_Category
+		dataType: string
+		lineageTag: 79729584-8cd6-46a7-a8bf-07a42aa955a2
+		sourceLineageTag: Product_Category
+		summarizeBy: none
+		sourceColumn: Product_Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_Name_Length
+		dataType: int64
+		formatString: 0
+		lineageTag: 5781344d-1172-4c2c-8382-22485453c27c
+		sourceLineageTag: Product_Name_Length
+		summarizeBy: sum
+		sourceColumn: Product_Name_Length
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_Description_Length
+		dataType: int64
+		formatString: 0
+		lineageTag: 3eb5333b-44ee-477f-8bdb-d10f401fdccc
+		sourceLineageTag: Product_Description_Length
+		summarizeBy: sum
+		sourceColumn: Product_Description_Length
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_Photos_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: d1925d6c-c2c8-4f71-bc36-5fd3af4e0da8
+		sourceLineageTag: Product_Photos_Count
+		summarizeBy: sum
+		sourceColumn: Product_Photos_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_Weight_Grams
+		dataType: double
+		lineageTag: 30b55ed3-92b3-4b4c-b50b-4c962362c79d
+		sourceLineageTag: Product_Weight_Grams
+		summarizeBy: sum
+		sourceColumn: Product_Weight_Grams
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Product_Length_CM
+		dataType: double
+		lineageTag: 7c308f8e-7d91-4a1d-8a5c-b8b08ed5b9e8
+		sourceLineageTag: Product_Length_CM
+		summarizeBy: sum
+		sourceColumn: Product_Length_CM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Product_Height_CM
+		dataType: double
+		lineageTag: 8567b91f-91ec-42d7-bde2-01b084fe84fc
+		sourceLineageTag: Product_Height_CM
+		summarizeBy: sum
+		sourceColumn: Product_Height_CM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Product_Width_CM
+		dataType: double
+		lineageTag: 11e855f4-1f21-4f42-be72-84d4a4100c96
+		sourceLineageTag: Product_Width_CM
+		summarizeBy: sum
+		sourceColumn: Product_Width_CM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Product_Volume_CM3
+		dataType: double
+		lineageTag: 85e49ee2-a155-4594-8aa4-90e7b62f5869
+		sourceLineageTag: Product_Volume_CM3
+		summarizeBy: sum
+		sourceColumn: Product_Volume_CM3
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Created_Timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a2ceb1ca-941b-4f06-a311-b407db969e19
+		sourceLineageTag: Created_Timestamp
+		summarizeBy: none
+		sourceColumn: Created_Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modified_Timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5489e5f7-1594-47e3-b74f-f3fd2d22a899
+		sourceLineageTag: Modified_Timestamp
+		summarizeBy: none
+		sourceColumn: Modified_Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	partition business_models_dim_product = entity
+		mode: directLake
+		source
+			entityName: business_models_dim_product
+			schemaName: dbo
+			expressionSource: 'DirectLake - AI_ML_LakeHouse'
+
