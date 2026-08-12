@@ -1,0 +1,183 @@
+table analytics_risk_monitoring
+	lineageTag: ce33968c-8fcf-4e50-acf0-caa79fe58ff5
+	sourceLineageTag: [dbo].[analytics_risk_monitoring]
+
+	measure 'High Risk Decisions' =
+			
+			CALCULATE(
+			    COUNTROWS(analytics_risk_monitoring),
+			    analytics_risk_monitoring[risk_level] = "HIGH"
+			)
+		formatString: 0
+		lineageTag: 62bab056-b883-4cd2-be83-020a88053d79
+
+		changedProperty = Name
+
+	measure 'Pending Approvals' =
+			
+			CALCULATE(
+			    COUNTROWS(analytics_risk_monitoring),
+			    analytics_risk_monitoring[action_status] = "PENDING_APPROVAL"
+			)
+		formatString: 0
+		lineageTag: fca72db3-9516-45dc-8b68-623eae36985c
+
+		changedProperty = Name
+
+	measure 'Open Actions' =
+			
+			CALCULATE(
+			    COUNTROWS(analytics_risk_monitoring),
+			    analytics_risk_monitoring[action_status] = "OPEN"
+			)
+		formatString: 0
+		lineageTag: 464cd89f-4cc9-4747-96f4-e66a1ca5e858
+
+		changedProperty = Name
+
+	column decision_id
+		dataType: string
+		lineageTag: ca6f6505-5e6a-4d5b-b0fc-6a552a1ec021
+		sourceLineageTag: decision_id
+		summarizeBy: none
+		sourceColumn: decision_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column action_id
+		dataType: string
+		lineageTag: 110b2949-725d-4af1-a006-ada19fb9a72e
+		sourceLineageTag: action_id
+		summarizeBy: none
+		sourceColumn: action_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column entity_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 5724c1cb-8453-42e9-a002-2d4d23edd624
+		sourceLineageTag: entity_id
+		summarizeBy: sum
+		sourceColumn: entity_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_id
+		dataType: string
+		lineageTag: 9f1d0baf-a48c-401e-b4ce-23ad43f138f5
+		sourceLineageTag: order_id
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column risk_level
+		dataType: string
+		lineageTag: f07b124a-c519-481e-98f8-7d8a02fa6bac
+		sourceLineageTag: risk_level
+		summarizeBy: none
+		sourceColumn: risk_level
+
+		annotation SummarizationSetBy = Automatic
+
+	column priority
+		dataType: string
+		lineageTag: 4d97da95-dd30-4a69-8dc8-772def8f36f9
+		sourceLineageTag: priority
+		summarizeBy: none
+		sourceColumn: priority
+
+		annotation SummarizationSetBy = Automatic
+
+	column agent_decision
+		dataType: string
+		lineageTag: 9b44cdfd-35fe-4d33-a961-d99706353a58
+		sourceLineageTag: agent_decision
+		summarizeBy: none
+		sourceColumn: agent_decision
+
+		annotation SummarizationSetBy = Automatic
+
+	column recommended_action
+		dataType: string
+		lineageTag: 6351f63f-d7c1-4cbc-95a2-cda276a5e2f6
+		sourceLineageTag: recommended_action
+		summarizeBy: none
+		sourceColumn: recommended_action
+
+		annotation SummarizationSetBy = Automatic
+
+	column decision_reason
+		dataType: string
+		lineageTag: 2697d2e6-f353-42ff-a578-7a7af26d8345
+		sourceLineageTag: decision_reason
+		summarizeBy: none
+		sourceColumn: decision_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column action_type
+		dataType: string
+		lineageTag: ed54b3b1-39c1-42a5-9de8-ac934b4f83c3
+		sourceLineageTag: action_type
+		summarizeBy: none
+		sourceColumn: action_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column action_status
+		dataType: string
+		lineageTag: 47faea4b-4fd9-4e0c-95df-cb1b1a9a20e7
+		sourceLineageTag: action_status
+		summarizeBy: none
+		sourceColumn: action_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column requires_human_approval
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f8eb6c76-6795-4b1a-8edb-cfba9adfcff1
+		sourceLineageTag: requires_human_approval
+		summarizeBy: none
+		sourceColumn: requires_human_approval
+
+		annotation SummarizationSetBy = Automatic
+
+	column decision_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b9873881-04c5-4aac-80d8-8eb1c7614236
+		sourceLineageTag: decision_timestamp
+		summarizeBy: none
+		sourceColumn: decision_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column action_created_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 37aa3afb-fd16-4023-a737-50e912399a91
+		sourceLineageTag: action_created_timestamp
+		summarizeBy: none
+		sourceColumn: action_created_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column agent_name
+		dataType: string
+		lineageTag: 9af45c89-a7b3-48d7-acc3-de54079fa180
+		sourceLineageTag: agent_name
+		summarizeBy: none
+		sourceColumn: agent_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition analytics_risk_monitoring = entity
+		mode: directLake
+		source
+			entityName: analytics_risk_monitoring
+			schemaName: dbo
+			expressionSource: 'DirectLake - AI_ML_LakeHouse'
+

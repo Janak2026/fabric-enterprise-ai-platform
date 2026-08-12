@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "a63822ed58840b7a9eb8",
+  "position": {
+    "x": 270.00869418527697,
+    "y": 114.80684634649572,
+    "z": 2000,
+    "height": 88.231187469992079,
+    "width": 240.24395624359289,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "analytics_ai_insights"
+                    }
+                  },
+                  "Property": "Average AI Delivery Delay"
+                }
+              },
+              "queryRef": "analytics_ai_insights.Average AI Delivery Delay",
+              "nativeQueryRef": "Average AI Delivery Delay"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "analytics_ai_insights"
+                  }
+                },
+                "Property": "Average AI Delivery Delay"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

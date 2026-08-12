@@ -1,0 +1,78 @@
+table business_models_dim_seller
+	lineageTag: 30b378ef-b699-4e1e-b962-4ffc7b49ad13
+	sourceLineageTag: [dbo].[business_models_dim_seller]
+
+	column Seller_SK
+		dataType: int64
+		formatString: 0
+		lineageTag: fed618ab-c240-4faf-b905-872d6f41d788
+		sourceLineageTag: Seller_SK
+		summarizeBy: none
+		sourceColumn: Seller_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Seller_ID
+		dataType: string
+		lineageTag: b91cfbdc-2fa5-4184-bf3e-8fd450af0702
+		sourceLineageTag: Seller_ID
+		summarizeBy: none
+		sourceColumn: Seller_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zip_Code_Prefix
+		dataType: int64
+		formatString: 0
+		lineageTag: 9dd73d47-9a40-4ff8-b770-b8c61d01dae6
+		sourceLineageTag: Zip_Code_Prefix
+		summarizeBy: sum
+		sourceColumn: Zip_Code_Prefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column Seller_City
+		dataType: string
+		lineageTag: af39eebd-0d4f-4aca-9069-68d7621ffdae
+		sourceLineageTag: Seller_City
+		summarizeBy: none
+		sourceColumn: Seller_City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Seller_State
+		dataType: string
+		lineageTag: 0da0ba4c-af43-46c7-99e7-6691f94e2a5a
+		sourceLineageTag: Seller_State
+		summarizeBy: none
+		sourceColumn: Seller_State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Created_Timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4323962d-91f5-4b00-86ff-f7ea2f2ba407
+		sourceLineageTag: Created_Timestamp
+		summarizeBy: none
+		sourceColumn: Created_Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modified_Timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4d9fba29-4300-47d0-81b1-23f28d98a418
+		sourceLineageTag: Modified_Timestamp
+		summarizeBy: none
+		sourceColumn: Modified_Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	partition business_models_dim_seller = entity
+		mode: directLake
+		source
+			entityName: business_models_dim_seller
+			schemaName: dbo
+			expressionSource: 'DirectLake - AI_ML_LakeHouse'
+

@@ -2,7 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Lakehouse",
-    "displayName": "AI_ML_LakeHouse"
+    "displayName": "AI_ML_LakeHouse",
+    "description": "Central Microsoft Fabric Lakehouse for the TITAN Enterprise AI Platform. Stores Bronze, Silver, Gold, Machine Learning, AI, and Analytics data supporting enterprise data engineering, ML, Generative AI, Agentic AI, and Power BI workloads."
   },
   "config": {
     "version": "2.0",

@@ -1,0 +1,91 @@
+table business_models_dim_geography
+	lineageTag: c0bc848f-f2a3-4d4f-8bd4-736b2a9d3737
+	sourceLineageTag: [dbo].[business_models_dim_geography]
+
+	column Geography_SK
+		dataType: int64
+		formatString: 0
+		lineageTag: a3a73e63-cf7f-4a29-a875-7775ac45e0cc
+		sourceLineageTag: Geography_SK
+		summarizeBy: none
+		sourceColumn: Geography_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zip_Code_Prefix
+		dataType: int64
+		formatString: 0
+		lineageTag: edf91fb8-2a64-4ed0-9aae-8ed165eabfdc
+		sourceLineageTag: Zip_Code_Prefix
+		summarizeBy: none
+		sourceColumn: Zip_Code_Prefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: b2ea99a2-0804-41be-8a32-c516e4c52758
+		sourceLineageTag: City
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: a2dad8f0-5220-4bed-8539-b17be72afa59
+		sourceLineageTag: State
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latitude
+		dataType: double
+		lineageTag: 20a28f22-8c97-4cfd-a74f-978ade88c34a
+		sourceLineageTag: Latitude
+		summarizeBy: none
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Longitude
+		dataType: double
+		lineageTag: 0db8050c-9278-49b0-9eef-c73bbced29f7
+		sourceLineageTag: Longitude
+		summarizeBy: none
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Created_Timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2865a7ba-5957-4e55-a4f0-a038dbef1fd4
+		sourceLineageTag: Created_Timestamp
+		summarizeBy: none
+		sourceColumn: Created_Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modified_Timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a01e4336-f23c-4db3-88d6-ee9191812cc2
+		sourceLineageTag: Modified_Timestamp
+		summarizeBy: none
+		sourceColumn: Modified_Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	partition business_models_dim_geography = entity
+		mode: directLake
+		source
+			entityName: business_models_dim_geography
+			schemaName: dbo
+			expressionSource: 'DirectLake - AI_ML_LakeHouse'
+

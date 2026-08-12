@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "1aeda2cd2a8a347420a1",
+  "displayName": "04_Executive_AI_Insights",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280
+}

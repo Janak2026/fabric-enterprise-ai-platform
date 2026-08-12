@@ -1,0 +1,40 @@
+relationship 451b3438-79dd-02a0-b1d4-275754065e15
+	fromColumn: business_models_fact_sales.Calendar_SK
+	toColumn: business_models_dim_calendar.Calendar_SK
+
+relationship 1f83ee5c-fa6f-0637-bd48-366097e0dfab
+	fromColumn: business_models_fact_sales.Customer_SK
+	toColumn: business_models_dim_customer.Customer_SK
+
+relationship faf2c546-2210-5779-bc7c-0bbcd137f969
+	fromColumn: business_models_fact_sales.Product_SK
+	toColumn: business_models_dim_product.Product_SK
+
+relationship b3b4795e-92c6-ac37-f809-77dfc553af80
+	fromColumn: business_models_fact_sales.Geography_SK
+	toColumn: business_models_dim_geography.Geography_SK
+
+relationship 42671842-5260-b729-8461-b252916d5650
+	fromColumn: business_models_fact_sales.Seller_SK
+	toColumn: business_models_dim_seller.Seller_SK
+
+relationship ac22bbf7-84a0-2795-c70c-0998f4deb68e
+	fromColumn: analytics_executive_summary.calendar_sk
+	toColumn: business_models_dim_calendar.Calendar_SK
+
+relationship ddf930bb-b17e-9ecd-f5df-6d5a887a232f
+	fromColumn: analytics_ai_insights.calendar_sk
+	toColumn: business_models_dim_calendar.Calendar_SK
+
+relationship 550d13bc-9fb8-2cac-fb9b-c0bdc2565d14
+	fromColumn: analytics_ai_insights.customer_sk
+	toColumn: business_models_dim_customer.Customer_SK
+
+relationship ae45b901-ba44-335b-ad69-fd98f350ba94
+	fromColumn: analytics_ai_insights.product_sk
+	toColumn: business_models_dim_product.Product_SK
+
+relationship e12302bc-c9d1-54d9-7e35-795700da6b7b
+	fromColumn: analytics_ai_insights.seller_sk
+	toColumn: business_models_dim_seller.Seller_SK
+

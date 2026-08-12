@@ -1,0 +1,173 @@
+table analytics_executive_summary
+	lineageTag: 576d8bb8-9ef4-4e52-8bf1-be3792bc8a59
+	sourceLineageTag: [dbo].[analytics_executive_summary]
+
+	measure 'Actual Revenue' =
+			
+			SUM(
+			    analytics_executive_summary[actual_revenue]
+			)
+		lineageTag: 8f2111b0-cd84-4390-8cc8-7772d4982b0f
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Predicted Revenue' =
+			
+			SUM(
+			    analytics_executive_summary[predicted_revenue]
+			)
+		lineageTag: e646ad2d-d8f5-4b24-9f44-4c825db2b933
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue Variance' =
+			
+			SUM(
+			    analytics_executive_summary[revenue_variance]
+			)
+		lineageTag: 5b907903-7a5b-4a91-b9f4-97e8e71fabdb
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Prediction Error' =
+			
+			AVERAGE(
+			    analytics_executive_summary[prediction_error]
+			)
+		lineageTag: 756f1f2b-b257-46de-a0eb-3c16207ca53a
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column calendar_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: 75598fab-e558-454e-bc59-24c9fd297ef5
+		sourceLineageTag: calendar_sk
+		summarizeBy: none
+		sourceColumn: calendar_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_revenue
+		dataType: double
+		lineageTag: d2a10ea1-29a3-426b-ba7f-80f8337cec69
+		sourceLineageTag: total_revenue
+		summarizeBy: sum
+		sourceColumn: total_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_orders
+		dataType: int64
+		formatString: 0
+		lineageTag: 49e39624-3430-4a00-b9b5-ab8f4af5b715
+		sourceLineageTag: total_orders
+		summarizeBy: sum
+		sourceColumn: total_orders
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_items
+		dataType: int64
+		formatString: 0
+		lineageTag: bea705b3-94a1-4492-9b85-d9a1c531f65f
+		sourceLineageTag: total_items
+		summarizeBy: sum
+		sourceColumn: total_items
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_order_value
+		dataType: double
+		lineageTag: d6c419a2-1d5f-49be-91d7-44fcc93eca24
+		sourceLineageTag: avg_order_value
+		summarizeBy: sum
+		sourceColumn: avg_order_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_review_score
+		dataType: double
+		lineageTag: 77660508-9f4e-412a-968a-4376a5b14b7e
+		sourceLineageTag: avg_review_score
+		summarizeBy: sum
+		sourceColumn: avg_review_score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_delivery_delay_days
+		dataType: double
+		lineageTag: 5869171e-98a2-47ef-b8db-81ce0b49e996
+		sourceLineageTag: avg_delivery_delay_days
+		summarizeBy: sum
+		sourceColumn: avg_delivery_delay_days
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column actual_revenue
+		dataType: double
+		lineageTag: 492ab7f0-e3d8-4531-a40c-61d29a09c595
+		sourceLineageTag: actual_revenue
+		summarizeBy: sum
+		sourceColumn: actual_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column predicted_revenue
+		dataType: double
+		lineageTag: 253c1188-6706-4d1e-b9d3-43a789d4c3ab
+		sourceLineageTag: predicted_revenue
+		summarizeBy: sum
+		sourceColumn: predicted_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column prediction_error
+		dataType: double
+		lineageTag: c1bd04c7-f92a-4d79-b159-a5db7252e77e
+		sourceLineageTag: prediction_error
+		summarizeBy: sum
+		sourceColumn: prediction_error
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column revenue_variance
+		dataType: double
+		lineageTag: 27075b08-6a4d-4b35-8ae7-eb72c42cf19d
+		sourceLineageTag: revenue_variance
+		summarizeBy: sum
+		sourceColumn: revenue_variance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition analytics_executive_summary = entity
+		mode: directLake
+		source
+			entityName: analytics_executive_summary
+			schemaName: dbo
+			expressionSource: 'DirectLake - AI_ML_LakeHouse'
+

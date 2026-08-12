@@ -1,0 +1,390 @@
+table business_models_fact_sales
+	lineageTag: 20467709-96ee-4bf7-97cf-5b08852a4cec
+	sourceLineageTag: [dbo].[business_models_fact_sales]
+
+	measure 'Total Revenue' =
+			
+			SUM ( business_models_fact_sales[Total_Item_Value] )
+		lineageTag: bcec3100-d37f-4c08-ac6c-2bd244854e4a
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Orders' =
+			
+			DISTINCTCOUNT ( business_models_fact_sales[Order_ID] )
+		formatString: 0
+		lineageTag: e0e3e723-89f9-4ee5-b1b5-67c7252fa1f6
+
+		changedProperty = Name
+
+	measure 'Total Customers' =
+			
+			DISTINCTCOUNT ( business_models_fact_sales[Customer_SK] )
+		formatString: 0
+		lineageTag: 9d685a4d-12bb-4aba-8556-20495ab63031
+
+		changedProperty = Name
+
+	measure 'Total Products' =
+			
+			DISTINCTCOUNT ( business_models_fact_sales[Product_SK] )
+		formatString: 0
+		lineageTag: 85ff8e8f-ae62-42cd-9142-ba18a5950072
+
+		changedProperty = Name
+
+	measure 'Total Sellers' =
+			
+			DISTINCTCOUNT ( business_models_fact_sales[Seller_SK] )
+		formatString: 0
+		lineageTag: a2b67dec-8bcc-41d4-9663-e16fcbeeebc8
+
+		changedProperty = Name
+
+	measure 'Average Order Value' =
+			
+			DIVIDE(
+			    [Total Revenue],
+			    [Total Orders]
+			)
+		lineageTag: de9f4749-aa25-45cb-9254-b34142c1bcca
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Delivery Days' =
+			
+			AVERAGE(
+			    business_models_fact_sales[Delivery_Days]
+			)
+		lineageTag: d0584356-9a31-46b1-9fc7-ee0b1bf0e0f6
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Review Score' =
+			
+			AVERAGE(
+			    business_models_fact_sales[Review_Score]
+			)
+		lineageTag: 3206d8e2-7e52-44ed-a139-715c311558a4
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Free Shipping %' =
+			
+			DIVIDE(
+			    CALCULATE(
+			        COUNTROWS(business_models_fact_sales),
+			        business_models_fact_sales[Is_Free_Shipping] = TRUE()
+			    ),
+			    COUNTROWS(business_models_fact_sales)
+			)
+		lineageTag: 7f785cbe-82b1-4c3c-b6a5-24e09fd0502f
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Delayed Deliveries' =
+			
+			CALCULATE(
+			    COUNTROWS(business_models_fact_sales),
+			    business_models_fact_sales[Delivery_Status] = "Delayed"
+			)
+		formatString: 0
+		lineageTag: e214c7f4-ddf1-47ea-80ec-9102c180dae7
+
+		changedProperty = Name
+
+	column Sales_SK
+		dataType: int64
+		formatString: 0
+		lineageTag: 0eb37f78-d4db-4551-812a-f0c0df5fe205
+		sourceLineageTag: Sales_SK
+		summarizeBy: sum
+		sourceColumn: Sales_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_ID
+		dataType: string
+		lineageTag: dc0f43c3-8020-4eb1-86dc-682135839d2b
+		sourceLineageTag: Order_ID
+		summarizeBy: none
+		sourceColumn: Order_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Item_ID
+		dataType: string
+		lineageTag: 001b76ee-19d9-4931-9c34-09e7672e8a34
+		sourceLineageTag: Order_Item_ID
+		summarizeBy: none
+		sourceColumn: Order_Item_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_SK
+		dataType: int64
+		formatString: 0
+		lineageTag: ea0ae189-c7bc-470e-ab3e-97efe6799e82
+		sourceLineageTag: Customer_SK
+		summarizeBy: none
+		sourceColumn: Customer_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_SK
+		dataType: int64
+		formatString: 0
+		lineageTag: 3342bad0-0e1a-407f-9b24-657f3cf7d49a
+		sourceLineageTag: Product_SK
+		summarizeBy: none
+		sourceColumn: Product_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Seller_SK
+		dataType: int64
+		formatString: 0
+		lineageTag: 2a49cbbe-4d21-4b1d-87e0-17151ab7d8e6
+		sourceLineageTag: Seller_SK
+		summarizeBy: none
+		sourceColumn: Seller_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Geography_SK
+		dataType: int64
+		formatString: 0
+		lineageTag: d627f4f4-8ac8-48e3-a952-54f388389f0d
+		sourceLineageTag: Geography_SK
+		summarizeBy: none
+		sourceColumn: Geography_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Calendar_SK
+		dataType: int64
+		formatString: 0
+		lineageTag: b0f22991-4b41-4d7d-a4b6-c09909aa3629
+		sourceLineageTag: Calendar_SK
+		summarizeBy: none
+		sourceColumn: Calendar_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Status
+		dataType: string
+		lineageTag: c53318ff-4364-4f47-9d82-fb8d31d7296d
+		sourceLineageTag: Order_Status
+		summarizeBy: none
+		sourceColumn: Order_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Purchase_Timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1b0ef2d5-94e9-4453-a663-f57b379bf84a
+		sourceLineageTag: Order_Purchase_Timestamp
+		summarizeBy: none
+		sourceColumn: Order_Purchase_Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Approved_Timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fd26a75c-a836-4996-b0f8-8249a962d63b
+		sourceLineageTag: Order_Approved_Timestamp
+		summarizeBy: none
+		sourceColumn: Order_Approved_Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Delivered_Carrier_Timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bf92d1f2-85ff-4ae7-971c-e9e56e51d947
+		sourceLineageTag: Order_Delivered_Carrier_Timestamp
+		summarizeBy: none
+		sourceColumn: Order_Delivered_Carrier_Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Delivered_Customer_Timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0de84d0a-c28c-4659-b5d0-5bfc0d80e67d
+		sourceLineageTag: Order_Delivered_Customer_Timestamp
+		summarizeBy: none
+		sourceColumn: Order_Delivered_Customer_Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Estimated_Delivery_Timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ff6cdae4-1ad8-4b6b-85e3-f788841feedb
+		sourceLineageTag: Order_Estimated_Delivery_Timestamp
+		summarizeBy: none
+		sourceColumn: Order_Estimated_Delivery_Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column Delivery_Days
+		dataType: int64
+		formatString: 0
+		lineageTag: 43c7e057-2bb8-4e16-a8a5-82578dccf8c5
+		sourceLineageTag: Delivery_Days
+		summarizeBy: sum
+		sourceColumn: Delivery_Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column Delivery_Delay_Days
+		dataType: int64
+		formatString: 0
+		lineageTag: 496d2998-53f6-47a8-a28a-adcdbdcc69eb
+		sourceLineageTag: Delivery_Delay_Days
+		summarizeBy: sum
+		sourceColumn: Delivery_Delay_Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column Delivery_Status
+		dataType: string
+		lineageTag: 85ec3f89-4038-4178-a4cc-64713778b58e
+		sourceLineageTag: Delivery_Status
+		summarizeBy: none
+		sourceColumn: Delivery_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Delivery_Performance
+		dataType: string
+		lineageTag: 42c08de3-6533-4389-8409-a522ee03504d
+		sourceLineageTag: Delivery_Performance
+		summarizeBy: none
+		sourceColumn: Delivery_Performance
+
+		annotation SummarizationSetBy = Automatic
+
+	column Price
+		dataType: double
+		lineageTag: 7a4a62bb-a54f-4a17-b41a-8ed457cea7b0
+		sourceLineageTag: Price
+		summarizeBy: sum
+		sourceColumn: Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Freight_Value
+		dataType: double
+		lineageTag: 0bb039ef-58fe-4c01-86e6-2a9b1ecd155e
+		sourceLineageTag: Freight_Value
+		summarizeBy: sum
+		sourceColumn: Freight_Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Total_Item_Value
+		dataType: double
+		lineageTag: d01b0895-4e05-4e3d-bc3f-a6bf84c09fda
+		sourceLineageTag: Total_Item_Value
+		summarizeBy: sum
+		sourceColumn: Total_Item_Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Is_Free_Shipping
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 38a35d78-2c89-477c-a3ec-48731b21f324
+		sourceLineageTag: Is_Free_Shipping
+		summarizeBy: none
+		sourceColumn: Is_Free_Shipping
+
+		annotation SummarizationSetBy = Automatic
+
+	column Payment_Type
+		dataType: string
+		lineageTag: 31640206-ca8d-46f1-aaed-dab55a65e646
+		sourceLineageTag: Payment_Type
+		summarizeBy: none
+		sourceColumn: Payment_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Payment_Installments
+		dataType: int64
+		formatString: 0
+		lineageTag: 59e896ff-f5dc-42c1-ab7d-dba01eca1bbc
+		sourceLineageTag: Payment_Installments
+		summarizeBy: sum
+		sourceColumn: Payment_Installments
+
+		annotation SummarizationSetBy = Automatic
+
+	column Payment_Value
+		dataType: double
+		lineageTag: f6bbdf45-e865-4ef4-bcc6-55875d8d0512
+		sourceLineageTag: Payment_Value
+		summarizeBy: sum
+		sourceColumn: Payment_Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Review_Score
+		dataType: int64
+		formatString: 0
+		lineageTag: d5d20036-4425-4874-8379-3f2d9b7b599d
+		sourceLineageTag: Review_Score
+		summarizeBy: sum
+		sourceColumn: Review_Score
+
+		annotation SummarizationSetBy = Automatic
+
+	column Created_Timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 706c554e-b4d3-4f37-8df1-cb1b4be4fcb6
+		sourceLineageTag: Created_Timestamp
+		summarizeBy: none
+		sourceColumn: Created_Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modified_Timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5c3d85cd-12d5-4d90-827f-89bf5d8c88d3
+		sourceLineageTag: Modified_Timestamp
+		summarizeBy: none
+		sourceColumn: Modified_Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	partition business_models_fact_sales = entity
+		mode: directLake
+		source
+			entityName: business_models_fact_sales
+			schemaName: dbo
+			expressionSource: 'DirectLake - AI_ML_LakeHouse'
+

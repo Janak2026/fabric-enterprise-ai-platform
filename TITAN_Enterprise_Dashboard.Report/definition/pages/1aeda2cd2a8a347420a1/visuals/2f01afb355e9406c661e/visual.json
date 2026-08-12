@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "2f01afb355e9406c661e",
+  "position": {
+    "x": 974.79516759015348,
+    "y": 207.29013923672838,
+    "z": 8,
+    "height": 95.6723719554131,
+    "width": 294.45830035166034,
+    "tabOrder": 8
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "analytics_ai_insights"
+                    }
+                  },
+                  "Property": "model_name"
+                }
+              },
+              "queryRef": "analytics_ai_insights.model_name",
+              "nativeQueryRef": "AI Model",
+              "active": true,
+              "displayName": "AI Model"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Basic'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

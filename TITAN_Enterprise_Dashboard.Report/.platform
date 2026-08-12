@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "TITAN_Enterprise_Dashboard",
+    "description": "Executive Power BI dashboard for the TITAN Enterprise AI Platform, providing business performance, risk and operations, "
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2bc4425f-8468-96cd-42a4-4fbd78fcc5c4"
+  }
+}

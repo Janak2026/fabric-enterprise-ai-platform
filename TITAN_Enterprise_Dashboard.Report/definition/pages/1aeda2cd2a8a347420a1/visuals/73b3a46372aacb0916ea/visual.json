@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "73b3a46372aacb0916ea",
+  "position": {
+    "x": 974.79516759015348,
+    "y": 117.99592541167615,
+    "z": 4,
+    "height": 77.600923919390624,
+    "width": 294.45830035166034,
+    "tabOrder": 4
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "analytics_ai_insights"
+                    }
+                  },
+                  "Property": "Average AI Review Score"
+                }
+              },
+              "queryRef": "analytics_ai_insights.Average AI Review Score",
+              "nativeQueryRef": "Average AI Review Score"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "analytics_ai_insights"
+                  }
+                },
+                "Property": "Average AI Review Score"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

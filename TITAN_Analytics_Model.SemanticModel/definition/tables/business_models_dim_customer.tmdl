@@ -1,0 +1,86 @@
+table business_models_dim_customer
+	lineageTag: 657f3d51-d69c-467d-84b9-e2c73bf4b30f
+	sourceLineageTag: [dbo].[business_models_dim_customer]
+
+	column Customer_SK
+		dataType: int64
+		formatString: 0
+		lineageTag: fea67d3c-6ec8-490f-a294-3b28d941062d
+		sourceLineageTag: Customer_SK
+		summarizeBy: none
+		sourceColumn: Customer_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_ID
+		dataType: string
+		lineageTag: 2989404c-9273-4614-a78f-e7a846a5a707
+		sourceLineageTag: Customer_ID
+		summarizeBy: none
+		sourceColumn: Customer_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Unique_ID
+		dataType: string
+		lineageTag: 18d3cc6e-0eb5-4fbd-a172-b5797d59e2d6
+		sourceLineageTag: Customer_Unique_ID
+		summarizeBy: none
+		sourceColumn: Customer_Unique_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zip_Code_Prefix
+		dataType: string
+		lineageTag: 14d7b675-62ae-40ad-9cc4-64372fd55294
+		sourceLineageTag: Zip_Code_Prefix
+		summarizeBy: none
+		sourceColumn: Zip_Code_Prefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_City
+		dataType: string
+		lineageTag: 53536ef5-7081-487c-87b6-c21a67d6d5c4
+		sourceLineageTag: Customer_City
+		summarizeBy: none
+		sourceColumn: Customer_City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_State
+		dataType: string
+		lineageTag: f307743d-321f-462e-893e-faf090695aaf
+		sourceLineageTag: Customer_State
+		summarizeBy: none
+		sourceColumn: Customer_State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Created_Timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 549c7f73-dae9-4064-a8d9-05f83ad00a8a
+		sourceLineageTag: Created_Timestamp
+		summarizeBy: none
+		sourceColumn: Created_Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modified_Timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4c017c87-3030-46ee-9513-ddbd6469e9a4
+		sourceLineageTag: Modified_Timestamp
+		summarizeBy: none
+		sourceColumn: Modified_Timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	partition business_models_dim_customer = entity
+		mode: directLake
+		source
+			entityName: business_models_dim_customer
+			schemaName: dbo
+			expressionSource: 'DirectLake - AI_ML_LakeHouse'
+
