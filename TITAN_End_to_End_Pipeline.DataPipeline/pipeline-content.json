@@ -15,7 +15,14 @@
           "secureOutput": false
         },
         "name": "02_Landing_Ingestion",
-        "dependsOn": []
+        "dependsOn": [
+          {
+            "activity": "Innitializing",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
       },
       {
         "type": "TridentNotebook",
@@ -207,6 +214,14 @@
             ]
           }
         ]
+      },
+      {
+        "type": "Wait",
+        "typeProperties": {
+          "waitTimeInSeconds": 60
+        },
+        "name": "Innitializing",
+        "dependsOn": []
       }
     ]
   }
