@@ -16,6 +16,10 @@
 # META           "id": "170d9a5a-7e61-4d0f-8908-f16ec4daf847"
 # META         }
 # META       ]
+# META     },
+# META     "environment": {
+# META       "environmentId": "1378321d-78c3-a7e3-4441-3b2e57bb79b6",
+# META       "workspaceId": "00000000-0000-0000-0000-000000000000"
 # META     }
 # META   }
 # META }
@@ -98,28 +102,28 @@
 
 # CELL ********************
 
-# Cell 0:
-# ============================================================
-# Install Required Libraries
-# ============================================================
-
-# %pip install --upgrade openai
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
 # Cell 1:
 # ============================================================
 # Azure OpenAI Configuration
 # ============================================================
 
-# "PAT" from Azure portal: confidential and not allowed to share
+# Azure OpenAI Resource Endpoint
+AZURE_OPENAI_ENDPOINT = "<I dont want to disclose here>"
+
+# Azure OpenAI API Key
+AZURE_OPENAI_API_KEY = "<I dont want to disclose here>"
+
+# Azure OpenAI API Version (Chat Completions)
+AZURE_OPENAI_API_VERSION = "<I dont want to disclose here>"
+
+# Azure OpenAI API Version (Responses API)
+AZURE_OPENAI_API_VERSION_RESPONSES = "<I dont want to disclose here>"
+
+# Azure OpenAI Deployment Name
+EMBEDDING_DEPLOYMENT = "<I dont want to disclose here>"
+
+# Chat Deployment
+CHAT_DEPLOYMENT = "<I dont want to disclose here>"
 
 # METADATA ********************
 
